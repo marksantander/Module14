@@ -4,6 +4,8 @@ const sequelize = require('sequelize');
 const app = express();
 
 app.engine('.hbs', handlebars.engine);
+helpers: {
+};
 app.set('view engine', '.hbs');
 
 const db = sequelize.connect('mysql://localhost:3306/blog_site', {
