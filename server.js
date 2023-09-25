@@ -36,4 +36,5 @@ app.get('/posts/:id', async (req, res) => {
 
 app.listen(3000, () => {
   console.log('listening on port 3000');
+  
 });
