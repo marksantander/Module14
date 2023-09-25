@@ -1,18 +1,18 @@
 const User = require("../models/user");
 
-// index()
+// index
 async function index(req, res) {
   const posts = await Post.findAll();
   res.render('posts/index', { posts });
 }
 
-// show()
+// show
 async function show(req, res) {
   const post = await post.findById(req.params.id);
   res.render('posts/show', { post });
 }
 
-// create()
+// create
 async function create(req, res) {
   const post = await post.create({
     title: req.body.title,
@@ -22,7 +22,7 @@ async function create(req, res) {
   res.redirect(`/posts/${post.id}`);
 }
 
-// update()
+// update
 async function update(req, res) {
   const post = await post.findById(req.params.id);
   await post.update({
@@ -32,14 +32,14 @@ async function update(req, res) {
   res.redirect(`/posts/${post.id}`);
 }
 
-// delete()
+// delete
 async function remove(req, res) {
   const post = await post.findById(req.params.id);
   await post.destroy();
   res.redirect('/posts');
 }
 
-// search()
+// search
 async function search(req, res) {
   const query = req.query.q;
   const posts = await Post.findAll({
@@ -52,14 +52,14 @@ async function search(req, res) {
   res.render('posts/search', { posts, query });
 }
 
-// getPostsByUser()
+// getPostsByUser
 async function getPostsByUser(req, res) {
   const user = await user.findById(req.params.userId);
   const posts = await user.getPosts();
   res.render('posts/user', { posts, user });
 }
 
-// getMostRecentPosts()
+// getMostRecentPosts
 async function getMostRecentPosts(req, res) {
   const posts = await posts.findAll({
     order: [['createdAt', 'DESC']],
