@@ -1,16 +1,16 @@
-// index()
+// index
 async function index(req, res) {
   const users = await users.findAll();
   res.render('users/index', { users });
 }
 
-// show()
+// show
 async function show(req, res) {
   const user = await user.findById(req.params.id);
   res.render('users/show', { user });
 }
 
-// create()
+// create
 async function create(req, res) {
   const user = await user.create({
     name: req.body.name,
@@ -29,14 +29,14 @@ email\: req\.body\.email,
 res\.redirect\(\`/users/</span>{user.id}`);
 }
 
-// delete()
+// delete
 async function remove(req, res) {
   const user = await user.findById(req.params.id);
   await user.destroy();
   res.redirect('/users');
 }
 
-// login()
+// login
 async function login(req, res) {
   const user = await user.findOne({ where: { email: req.body.email } });
   if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
@@ -47,7 +47,7 @@ async function login(req, res) {
   res.redirect('/');
 }
 
-// logout()
+// logout
 function logout(req, res) {
   req.session.destroy();
   res.redirect('/users/login')
